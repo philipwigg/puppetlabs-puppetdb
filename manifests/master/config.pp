@@ -1,7 +1,7 @@
 # Manage puppet configuration. See README.md for more details.
 class puppetdb::master::config(
   $puppetdb_server             = $::fqdn,
-  $puppetdb_port               = defined('$puppetdb::disable_ssl') ? {
+  $puppetdb_port               = defined(Class['puppetdb']) ? {
     true    => $puppetdb::disable_ssl ? { true => 8080, default => 8081, },
     default => 8081,
   },
